@@ -1,17 +1,27 @@
 # Fixes Summary
 
-Name:
-Registration number:
-Time spent:
+Name: RAJARAJAN K R
+Registration number: 73152321042
+Time spent: 
 
 ## Bugs fixed
 
 For each item, include the broken behavior, files changed, and how you verified the fix.
 
-1. Issue:
-   Files changed:
-   Explanation:
-   Verification:
+1. Issue: Application failed to start and    dashboard rendering was broken.
+
+Files changed:
+- package.json
+- src/App.jsx
+
+Explanation:
+- Added missing Vite development script.
+- Added missing react-dom dependency.
+- Fixed incorrect assignment operator in dashboard conditional rendering.
+
+Verification:
+- Application starts successfully with npm run dev.
+- Dashboard renders without runtime errors.
 
 2. Issue:
    Files changed:

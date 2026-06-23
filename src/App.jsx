@@ -75,7 +75,7 @@ function App() {
           }
         />
 
-        {activeTab = 'dashboard' && (
+        {activeTab == 'dashboard' && (
           <section className="page-section">
             <div className="hero-card">
               <div>
