@@ -23,10 +23,19 @@ Verification:
 - Application starts successfully with npm run dev.
 - Dashboard renders without runtime errors.
 
-2. Issue:
-   Files changed:
-   Explanation:
-   Verification:
+2. 2. Issue: Sidebar navigation always opened Dashboard regardless of selected menu item.
+
+Files changed:
+- src/components/Sidebar.jsx
+
+Explanation:
+- Updated navigation click handler to use the selected item's id instead of hardcoding 'dashboard'.
+- Closed the sidebar after selecting a menu item for better mobile usability.
+
+Verification:
+- Dashboard, Assignments, and Announcements tabs now open correctly.
+- Active tab highlighting works as expected.
+- Sidebar closes after navigation on mobile.
 
 3. Issue:
    Files changed:
