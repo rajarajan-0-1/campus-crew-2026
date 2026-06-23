@@ -23,7 +23,7 @@ Verification:
 - Application starts successfully with npm run dev.
 - Dashboard renders without runtime errors.
 
-2. 2. Issue: Sidebar navigation always opened Dashboard regardless of selected menu item.
+2. Issue: Sidebar navigation always opened Dashboard regardless of selected menu item.
 
 Files changed:
 - src/components/Sidebar.jsx
@@ -37,10 +37,40 @@ Verification:
 - Active tab highlighting works as expected.
 - Sidebar closes after navigation on mobile.
 
-3. Issue:
-   Files changed:
-   Explanation:
-   Verification:
+3. Issue: Student search was case-sensitive and did not handle extra spaces.
+
+Files changed:
+- src/App.jsx
+
+Explanation:
+- Normalized both the search query and student names using trim() and toLowerCase() before comparison.
+
+Verification:
+- Search now works with uppercase, lowercase, mixed case, and leading/trailing spaces.
+
+4. Issue: Department filter did not correctly filter students.
+
+Files changed:
+- src/App.jsx
+
+Explanation:
+- Corrected department comparison logic to compare the selected department with each student's department.
+
+Verification:
+- Confirmed each department option displays only the relevant students.
+- Verified "All" displays all students.
+
+5. Issue: Open Assignments displayed completed assignments instead of pending ones.
+
+Files changed:
+- src/App.jsx
+
+Explanation:
+- Updated filtering logic to show only incomplete assignments in the Open Assignments section.
+
+Verification:
+- Confirmed completed assignments are excluded.
+- Confirmed pending assignments remain visible.
 
 ## UI improvements made
 

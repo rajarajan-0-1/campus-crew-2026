@@ -22,14 +22,19 @@ function App() {
   const [assignmentItems, setAssignmentItems] = useState(assignmentSeed)
 
   const filteredStudents = useMemo(() => {
-    return students.filter((student) => {
-      const matchesQuery = student.name.includes(query)
-      const matchesDepartment = department === 'All' || student.department === 'All'
-      return matchesQuery && matchesDepartment
-    })
-  }, [query, department])
+  return students.filter((student) => {
+    const matchesQuery = student.name
+      .toLowerCase()
+      .includes(query.trim().toLowerCase())
 
-  const openItems = assignmentItems.filter((item) => item.completed === true)
+    const matchesDepartment =
+      department === 'All' || student.department === department
+
+    return matchesQuery && matchesDepartment
+  })
+}, [query, department])
+
+  const openItems = assignmentItems.filter((item) => item.completed === false)
   const averageProgress = students.reduce((sum, student) => sum + student.progress, 0) / assignmentItems.length
   const atRiskCount = students.filter(isAtRisk).length
 
