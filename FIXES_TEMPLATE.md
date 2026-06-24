@@ -72,6 +72,66 @@ Verification:
 - Confirmed completed assignments are excluded.
 - Confirmed pending assignments remain visible.
 
+6. Issue: Incorrect average project progress calculation.
+
+Files changed:
+- src/App.jsx
+
+Fix:
+- Replaced student-based calculation with assignment completion ratio.
+- Calculated percentage as completed assignments / total assignments * 100.
+- Added safe check for empty assignment list.
+
+Verification:
+- Progress updates correctly when toggling assignments.
+- Value always stays between 0 and 100.
+
+7. Issue: General quality, stability, and UX improvements.
+
+Files changed:
+- src/App.jsx
+
+Fixes:
+- Improved student search to be case-insensitive and whitespace-safe.
+- Fixed department filter trimming issues.
+- Eliminated all direct state mutations in assignment toggle.
+- Added predictable assignment sorting by due date.
+- Fixed theme persistence to avoid overwriting body classes.
+- Improved safety checks for empty datasets.
+- Ensured average progress calculation is stable and non-breaking.
+
+Enhancements:
+- Added ESC key support for closing student modal.
+- Improved overall React rendering stability and data safety.
+
+Verification:
+- Search works with any casing and spacing.
+- Assignments update instantly without reload issues.
+- UI remains stable across navigation and refresh.
+
+8. Issue: Assignment creation via form
+
+Files changed:
+- src/components/NewAssignmentForm.jsx
+- src/App.jsx 
+
+Fixes:
+- Fixed form fields not overwriting each other while typing.
+- Corrected validation for required fields.
+- Reset form after successful submission.
+- Fixed state update for adding new assignments safely.
+
+Enhancements:
+- Added proper success/error messages.
+- New assignments appear instantly in UI.
+- Improved overall form stability and UX.
+
+Verification:
+- Form works correctly without input issues.
+- Validation blocks empty submissions.
+- Form resets after create.
+- New assignment shows immediately in list.
+
 ## UI improvements made
 
 Only list improvements that directly support the assignment requirements.
@@ -88,7 +148,7 @@ List any intentional refactors or behavior changes that were not directly requir
 
 ## Testing performed
 
-- Desktop:
+- Desktop: 
 - Tablet:
 - Mobile:
 - Browser console checked:

@@ -35,17 +35,32 @@ function App() {
 }, [query, department])
 
   const openItems = assignmentItems.filter((item) => item.completed === false)
-  const averageProgress = students.reduce((sum, student) => sum + student.progress, 0) / assignmentItems.length
+  const averageProgress =
+  assignmentItems.length === 0
+    ? 0
+    : (assignmentItems.filter((item) => item.completed).length /
+        assignmentItems.length) * 100 
   const atRiskCount = students.filter(isAtRisk).length
 
   function handleCreateAssignment(formData) {
-    setAssignmentItems([...assignmentItems, { id: Date.now(), completed: false, ...formData }])
+    const newAssignment = {
+      id: Date.now(),
+      completed: false,
+      ...formData,
+    }
+
+    setAssignmentItems((prev) => [...prev, newAssignment])
   }
 
-  function handleToggleAssignment(id) {
-    assignmentItems.find((item) => item.id === id).completed = !assignmentItems.find((item) => item.id === id).completed
-    setAssignmentItems(assignmentItems)
-  }
+ function handleToggleAssignment(id) {
+  setAssignmentItems((prev) =>
+    prev.map((item) =>
+      item.id === id
+        ? { ...item, completed: !item.completed }
+        : item
+    )
+  )
+}
 
   function handleThemeToggle() {
     setTheme(theme === 'light' ? 'dark' : 'light')
@@ -138,8 +153,7 @@ function App() {
 
               <section className="side-stack">
                 <AnnouncementPanel announcements={announcements} />
-                <AssignmentList assignments={openItems} onToggle={handleToggleAssignment} />
-              </section>
+                  <AssignmentList assignments={openItems} onToggle={handleToggleAssignment} />              </section>
             </div>
           </section>
         )}
